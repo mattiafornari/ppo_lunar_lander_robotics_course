@@ -1,31 +1,29 @@
-# Lunar Lander - Addestramento PPO
+# PPO Lunar Lander Training
 
-Progetto di Reinforcement Learning per il controllo ottimale del Lunar Lander utilizzando l'algoritmo PPO (Proximal Policy Optimization).
+Progetto del corso di Robotica: applicazione dell’algoritmo PPO (Proximal Policy Optimization) per risolvere il task di controllo continuo in Gymnasium LunarLanderContinuous-v3.
 
-## Struttura Progetto
+## Struttura del progetto
 
 ```
-lunar-lander-ppo/
-├── train_lander.py           # Script di addestramento
+ppo_lunar_lander_robotics_course/
+├── train_lander.py           # Script di training
 ├── visualize_lander.py       # Visualizzazione agente addestrato
 ├── requirements.txt          # Dipendenze Python
 ├── Dockerfile                # Configurazione container
 ├── docker-compose.yml        # Orchestrazione servizi
-├── .gitignore               # File ignorati da Git
-├── .dockerignore            # File ignorati da Docker
-├── LICENSE                  # Licenza MIT
-├── README.md                # Questo file
-└── logs/                    # Directory generata automaticamente
-    ├── tensorboard_logs/    # Log TensorBoard
-    ├── trajectory_plot.png  # Grafico traiettorie
-    └── phase_portrait.png   # Grafico spazio delle fasi
+├── .gitignore                # File ignorati da Git
+├── .dockerignore             # File ignorati da Docker
+├── LICENSE                   # Licenza MIT
+├── README.md                 # Questo file
+├── tensorboard_logs/         # Log TensorBoard ultimo training
+├── trajectory_plot.png       # Plot traiettorie
+└── phase_portrait.png        # Plot spazio delle fasi
 ```
 
 ## Requisiti
 
 - Python 3.10 o superiore
 - pip
-- Docker (opzionale ma consigliato)
 
 ## Installazione
 
@@ -41,33 +39,21 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Opzione 2: Docker
-
-```bash
-git clone https://github.com/username/lunar-lander-ppo.git
-cd lunar-lander-ppo
-
-docker-compose build
-```
-
 ## Utilizzo
 
-### Addestramento
+### Training
 
 **Locale:**
 ```bash
 python train_lander.py
 ```
 
-**Docker:**
-```bash
-docker-compose up training
-```
-
-L'addestramento dura circa 60-90 minuti su CPU moderno e genera:
+L'addestramento dura massimo 20-25 minuti su CPU moderna e genera:
 - Modello addestrato: `ppo_lunar_lander.zip`
 - Grafico traiettorie: `trajectory_plot.png`
 - Grafico spazio delle fasi: `phase_portrait.png`
+
+Si nota che mediante Intel Core i7-14700 il training ha impiegato circa 17-18 minuti.
 
 ### Monitoraggio con TensorBoard
 
@@ -75,77 +61,63 @@ L'addestramento dura circa 60-90 minuti su CPU moderno e genera:
 ```bash
 tensorboard --logdir tensorboard_logs/
 ```
-
-**Docker:**
-```bash
-docker-compose up tensorboard
-```
-
-Aprire browser su `http://localhost:6006`
+Aprire browser presso `http://localhost:6006` per visualizzare l'andamento del training.
 
 ### Visualizzazione
 
-Dopo l'addestramento, visualizzare l'agente in azione:
+Dopo l'addestramento, è possibile visualizzare l'agente (la policy) in azione:
 
 **Locale:**
 ```bash
 python visualize_lander.py
 ```
-
-**Docker:**
-```bash
-# Richiede X11 forwarding su Linux
-xhost +local:docker
-docker-compose up visualization
-```
-
 ## Parametri Addestramento
 
 | Parametro | Valore | Descrizione |
 |-----------|--------|-------------|
 | Algoritmo | PPO | Proximal Policy Optimization |
-| Learning Rate | 3e-4 | Tasso di apprendimento |
-| Steps per Update | 2048 | Passi raccolti prima di ogni aggiornamento |
-| Batch Size | 64 | Dimensione minibatch |
-| Epochs | 10 | Epoche di ottimizzazione |
+| Learning Rate | 3e-4 | Learning Rate |
+| Steps per Update | 2048 | Passi raccolti prima di ogni aggiornamento della policy |
+| Batch Size | 64 | Dimensione minibatch per SGD |
+| Epochs | 10 | Numero epoche |
 | Gamma | 0.99 | Fattore di sconto |
-| GAE Lambda | 0.95 | Parametro GAE |
+| GAE Lambda | 0.95 | Parametro GAE per la stima del vantaggio |
 | Clip Range | 0.2 | Range di clipping PPO |
-| Entropy Coefficient | 0.01 | Coefficiente entropia |
-| Total Timesteps | 2,000,000 | Passi totali di addestramento |
+| Entropy Coefficient | 0.01 | Coefficiente di entropia |
+| Total Timesteps | 2,000,000 | Passi totali dell'addestramento |
 
-## Architettura Rete
+## Architettura della rete
 
 - Tipo: Multi-Layer Perceptron (MLP)
 - Strati nascosti: [64, 64] (default Stable-Baselines3)
-- Attivazione: Tanh
-- Spazio osservazioni: 8 dimensioni
-- Spazio azioni: 2 dimensioni (continuo)
+- Funzione di attivazione: Tanh
+- Spazio delle osservazioni: 8 dimensioni
+- Spazio delle azioni: 2 dimensioni (continuo)
 
-## Metriche di Successo
+## Metriche 
 
-- Ricompensa media > 200: Ambiente risolto
+- Ricompensa media > 200: Ambiente risolto (vedere il sito https://gymnasium.farama.org/environments/box2d/lunar_lander/)
 - Ricompensa attesa: 250-280 dopo convergenza
 - Velocità di atterraggio < 0.5 m/s
 - Atterraggio entro il landing pad
 
 ## Analisi Output
 
-### Grafico Traiettorie
+### Grafico traiettorie
 
-Mostra le traiettorie spaziali dell'agente su 5 episodi di validazione. Un agente ben addestrato presenta:
+Il grafico mostra le traiettorie spaziali dell'agente su 5 episodi di validazione. Un agente ben addestrato presenta:
 - Approccio controllato al landing pad (x ≈ 0)
 - Riduzione graduale dell'altitudine
 - Punti di atterraggio concentrati vicino al centro
 
-### Grafico Spazio delle Fasi
+### Grafico spazio delle fasi
 
-Rappresenta la relazione altezza-velocità verticale. Comportamento atteso:
+Il grafico rappresenta la relazione altezza-velocità verticale (y-vy). Comportamento atteso:
 - Velocità di discesa moderata ad alta quota
-- Decelerazione progressiva in prossimità del suolo
+- Decelerazione progressiva in prossimità del suolo e dunque del pad
 - Velocità vicina a zero all'atterraggio
 
-## Risoluzione Problemi
+## Risoluzione dei problemi
 
 ### Errore: Box2D non installato
 
@@ -162,16 +134,11 @@ pip install gymnasium[box2d]
 ### Errore: Modello non trovato in visualize_lander.py
 
 Verificare che `ppo_lunar_lander.zip` esista nella directory corrente.
+La cartella zip menzionata viene creata da `train_lander.py` nel momento in cui l'addestramento termina.
 
 ### TensorBoard mostra grafici vuoti
 
-Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti dopo circa 2048 step.
-
-### Visualizzazione non funziona in Docker
-
-La visualizzazione grafica richiede X11. Alternativa:
-1. Copiare il modello dal container
-2. Eseguire visualize_lander.py localmente
+Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti dopo circa 2048 step. Si rammenta che di default che TensorBoard si aggiorna ogni 30 secondi.
 
 ## Riferimenti
 
@@ -181,7 +148,7 @@ La visualizzazione grafica richiede X11. Alternativa:
 
 ## Licenza
 
-Distribuito sotto licenza MIT. Vedere file `LICENSE` per dettagli.
+Distribuito sotto licenza MIT. Vedere il file `LICENSE` per ulteriori dettagli.
 
 ## Contatti
 
