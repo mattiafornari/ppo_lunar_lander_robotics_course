@@ -1,0 +1,188 @@
+# Lunar Lander - Addestramento PPO
+
+Progetto di Reinforcement Learning per il controllo ottimale del Lunar Lander utilizzando l'algoritmo PPO (Proximal Policy Optimization).
+
+## Struttura Progetto
+
+```
+lunar-lander-ppo/
+├── train_lander.py           # Script di addestramento
+├── visualize_lander.py       # Visualizzazione agente addestrato
+├── requirements.txt          # Dipendenze Python
+├── Dockerfile                # Configurazione container
+├── docker-compose.yml        # Orchestrazione servizi
+├── .gitignore               # File ignorati da Git
+├── .dockerignore            # File ignorati da Docker
+├── LICENSE                  # Licenza MIT
+├── README.md                # Questo file
+└── logs/                    # Directory generata automaticamente
+    ├── tensorboard_logs/    # Log TensorBoard
+    ├── trajectory_plot.png  # Grafico traiettorie
+    └── phase_portrait.png   # Grafico spazio delle fasi
+```
+
+## Requisiti
+
+- Python 3.10 o superiore
+- pip
+- Docker (opzionale ma consigliato)
+
+## Installazione
+
+### Opzione 1: Installazione Locale
+
+```bash
+git clone https://github.com/username/lunar-lander-ppo.git
+cd lunar-lander-ppo
+
+python3 -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+pip install -r requirements.txt
+```
+
+### Opzione 2: Docker
+
+```bash
+git clone https://github.com/username/lunar-lander-ppo.git
+cd lunar-lander-ppo
+
+docker-compose build
+```
+
+## Utilizzo
+
+### Addestramento
+
+**Locale:**
+```bash
+python train_lander.py
+```
+
+**Docker:**
+```bash
+docker-compose up training
+```
+
+L'addestramento dura circa 60-90 minuti su CPU moderno e genera:
+- Modello addestrato: `ppo_lunar_lander.zip`
+- Grafico traiettorie: `trajectory_plot.png`
+- Grafico spazio delle fasi: `phase_portrait.png`
+
+### Monitoraggio con TensorBoard
+
+**Locale:**
+```bash
+tensorboard --logdir tensorboard_logs/
+```
+
+**Docker:**
+```bash
+docker-compose up tensorboard
+```
+
+Aprire browser su `http://localhost:6006`
+
+### Visualizzazione
+
+Dopo l'addestramento, visualizzare l'agente in azione:
+
+**Locale:**
+```bash
+python visualize_lander.py
+```
+
+**Docker:**
+```bash
+# Richiede X11 forwarding su Linux
+xhost +local:docker
+docker-compose up visualization
+```
+
+## Parametri Addestramento
+
+| Parametro | Valore | Descrizione |
+|-----------|--------|-------------|
+| Algoritmo | PPO | Proximal Policy Optimization |
+| Learning Rate | 3e-4 | Tasso di apprendimento |
+| Steps per Update | 2048 | Passi raccolti prima di ogni aggiornamento |
+| Batch Size | 64 | Dimensione minibatch |
+| Epochs | 10 | Epoche di ottimizzazione |
+| Gamma | 0.99 | Fattore di sconto |
+| GAE Lambda | 0.95 | Parametro GAE |
+| Clip Range | 0.2 | Range di clipping PPO |
+| Entropy Coefficient | 0.01 | Coefficiente entropia |
+| Total Timesteps | 2,000,000 | Passi totali di addestramento |
+
+## Architettura Rete
+
+- Tipo: Multi-Layer Perceptron (MLP)
+- Strati nascosti: [64, 64] (default Stable-Baselines3)
+- Attivazione: Tanh
+- Spazio osservazioni: 8 dimensioni
+- Spazio azioni: 2 dimensioni (continuo)
+
+## Metriche di Successo
+
+- Ricompensa media > 200: Ambiente risolto
+- Ricompensa attesa: 250-280 dopo convergenza
+- Velocità di atterraggio < 0.5 m/s
+- Atterraggio entro il landing pad
+
+## Analisi Output
+
+### Grafico Traiettorie
+
+Mostra le traiettorie spaziali dell'agente su 5 episodi di validazione. Un agente ben addestrato presenta:
+- Approccio controllato al landing pad (x ≈ 0)
+- Riduzione graduale dell'altitudine
+- Punti di atterraggio concentrati vicino al centro
+
+### Grafico Spazio delle Fasi
+
+Rappresenta la relazione altezza-velocità verticale. Comportamento atteso:
+- Velocità di discesa moderata ad alta quota
+- Decelerazione progressiva in prossimità del suolo
+- Velocità vicina a zero all'atterraggio
+
+## Risoluzione Problemi
+
+### Errore: Box2D non installato
+
+```bash
+# Ubuntu/Debian
+sudo apt-get install swig
+pip install gymnasium[box2d]
+
+# macOS
+brew install swig
+pip install gymnasium[box2d]
+```
+
+### Errore: Modello non trovato in visualize_lander.py
+
+Verificare che `ppo_lunar_lander.zip` esista nella directory corrente.
+
+### TensorBoard mostra grafici vuoti
+
+Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti dopo circa 2048 step.
+
+### Visualizzazione non funziona in Docker
+
+La visualizzazione grafica richiede X11. Alternativa:
+1. Copiare il modello dal container
+2. Eseguire visualize_lander.py localmente
+
+## Riferimenti
+
+- Paper PPO: [Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347)
+- Stable-Baselines3: [Documentazione](https://stable-baselines3.readthedocs.io/)
+- Gymnasium: [LunarLander-v3](https://gymnasium.farama.org/environments/box2d/lunar_lander/)
+
+## Licenza
+
+Distribuito sotto licenza MIT. Vedere file `LICENSE` per dettagli.
+
+## Contatti
+
+Per segnalazioni o domande aprire una issue su GitHub.

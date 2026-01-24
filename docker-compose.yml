@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  training:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lunar_lander_training
+    volumes:
+      - ./tensorboard_logs:/workspace/tensorboard_logs
+      - ./:/workspace/output
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python train_lander.py
+
+  tensorboard:
+    image: tensorflow/tensorflow:latest
+    container_name: lunar_lander_tensorboard
+    ports:
+      - "6006:6006"
+    volumes:
+      - ./tensorboard_logs:/logs
+    command: tensorboard --logdir=/logs --host=0.0.0.0 --port=6006
+
+  visualization:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lunar_lander_viz
+    volumes:
+      - ./:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PYTHONUNBUFFERED=1
+    command: python visualize_lander.py
+    network_mode: host

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+venv/
+env/
+.vscode/
+.idea/
+*.zip
+*.png
+tensorboard_logs/
