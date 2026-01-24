@@ -1,8 +1,9 @@
 [project]
-name = "lunar-lander-ppo"
+name = "ppo_lunar_lander_robotics_course"
 version = "1.0.0"
-description = "PPO training for Lunar Lander continuous control"
-authors = [{name = "Your Name", email = "your.email@example.com"}]
+description = "PPO training for Lunar Lander continuous control in LunarLanderContinuousV3"
+authors = [{name = "Mattia Fornari, Luca Pugnetti, email = "m.fornari002@studenti.unibs.it, 
+l.pugnetti@studenti.unibs.it"}]
 requires-python = ">=3.10"
 dependencies = [
     "gymnasium[box2d]>=0.29.1",
