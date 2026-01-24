@@ -27,7 +27,7 @@ ppo_lunar_lander_robotics_course/
 ### Opzione 1: Installazione Locale
 
 ```bash
-git clone https://github.com/username/lunar-lander-ppo.git
+git clone https://github.com/mattiafornari/lunar-lander-ppo.git
 cd lunar-lander-ppo
 
 python3 -m venv venv
