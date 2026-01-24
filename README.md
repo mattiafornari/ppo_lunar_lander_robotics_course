@@ -8,9 +8,10 @@ Progetto del corso di Robotica: applicazione dell’algoritmo PPO (Proximal Poli
 ppo_lunar_lander_robotics_course/
 ├── train_lander.py           # Script di training
 ├── visualize_lander.py       # Visualizzazione agente addestrato
-├── requirements.txt          # Dipendenze Python
-├── .gitignore                # File ignorati da Git
+├── requirements.txt          # Dipendenze Python            
 ├── LICENSE.md                # Licenza MIT
+├── .gitignore
+├── .gitattributes    
 ├── README.md                 
 ```
 
