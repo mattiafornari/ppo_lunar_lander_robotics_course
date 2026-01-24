@@ -92,6 +92,8 @@ python visualize_lander.py
 - Spazio delle osservazioni: 8 dimensioni
 - Spazio delle azioni: 2 dimensioni (continuo)
 
+Si nota che questa configurazione è una baseline: MLP [64,64] con Tanh. Sono possibili miglioramenti significativi mediante hyperparameter tuning (e.g., learning rate, ent_coef, n_steps, batch_size, normalizzazione delle osservazioni etc.) e tramite riprogettazione della policy (e.g., ReLU/Swish, reti più profonde o ampie, separazione policy/value etc.).
+
 ## Metriche 
 
 - Ricompensa media > 200: Ambiente risolto (vedere il sito https://gymnasium.farama.org/environments/box2d/lunar_lander/)
