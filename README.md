@@ -10,8 +10,8 @@ ppo_lunar_lander_robotics_course/
 ├── visualize_lander.py       # Visualizzazione agente addestrato
 ├── requirements.txt          # Dipendenze Python
 ├── .gitignore                # File ignorati da Git
-├── LICENSE                   # Licenza MIT
-├── README.md                 # Questo file
+├── LICENSE.md                # Licenza MIT
+├── README.md                 
 ```
 
 ## Requisiti
