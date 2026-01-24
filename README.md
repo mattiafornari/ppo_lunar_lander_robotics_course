@@ -9,21 +9,18 @@ ppo_lunar_lander_robotics_course/
 ├── train_lander.py           # Script di training
 ├── visualize_lander.py       # Visualizzazione agente addestrato
 ├── requirements.txt          # Dipendenze Python
-├── Dockerfile                # Configurazione container
-├── docker-compose.yml        # Orchestrazione servizi
 ├── .gitignore                # File ignorati da Git
-├── .dockerignore             # File ignorati da Docker
 ├── LICENSE                   # Licenza MIT
 ├── README.md                 # Questo file
-├── tensorboard_logs/         # Log TensorBoard ultimo training
-├── trajectory_plot.png       # Plot traiettorie
-└── phase_portrait.png        # Plot spazio delle fasi
 ```
 
 ## Requisiti
 
+- Sistema operativo:
+  - Linux (consigliato)
+  - Windows con WSL (Windows Subsystem for Linux)
 - Python 3.10 o superiore
-- pip
+- pip 
 
 ## Installazione
 
