@@ -146,6 +146,11 @@ Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti d
 - Stable-Baselines3: [Documentazione](https://stable-baselines3.readthedocs.io/)
 - Gymnasium: [LunarLander-v3](https://gymnasium.farama.org/environments/box2d/lunar_lander/)
 
+## Autori
+
+- **Mattia Fornari** - [@mattiafornari](https://github.com/mattiafornari)
+- **Luca Pugnetti** - [@username](https://github.com/username)
+
 ## Licenza
 
 Distribuito sotto licenza MIT. Vedere il file `LICENSE` per ulteriori dettagli.
