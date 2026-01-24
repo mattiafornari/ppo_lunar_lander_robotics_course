@@ -2,6 +2,12 @@
 
 Progetto del corso di Robotica: applicazione dell’algoritmo PPO (Proximal Policy Optimization) per risolvere il task di controllo continuo in Gymnasium LunarLanderContinuous-v3.
 
+<video width="640" controls>
+  <source src="ppo_lunar_lander_baseline_demo.mp4" type="video/mp4">
+  Il tuo browser non supporta il video tag.
+</video>
+
+
 ## Struttura del progetto
 
 ```
