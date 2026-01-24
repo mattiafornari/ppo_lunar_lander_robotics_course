@@ -138,7 +138,7 @@ La cartella zip menzionata viene creata da `train_lander.py` nel momento in cui 
 
 ### TensorBoard mostra grafici vuoti
 
-Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti dopo circa 2048 step. Si rammenta che di default che TensorBoard si aggiorna ogni 30 secondi.
+Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti dopo circa 2048 step. Si rammenta che TensorBoard si aggiorna ogni 30 secondi di default.
 
 ## Riferimenti
 
