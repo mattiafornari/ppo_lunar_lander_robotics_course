@@ -49,15 +49,15 @@ pip install -r requirements.txt
 python train_lander.py
 ```
 
-L'addestramento dura massimo 20-25 minuti su CPU moderna e genera:
-- Modello addestrato: `ppo_lunar_lander.zip`
+L'addestramento dura massimo 30 minuti (anche di meno) su CPU moderna e genera:
+- File `ppo_lunar_lander.zip` contenente `policy.optmizer.pth`, `policy.optmizer.pth`, `pytorch\_variables.pth` e altri secondo Stable-Baselines3.
 
 Lo script prevede inoltre una breve fase di testing e valutazione (Evaluation). 
 In particolare, esegue l'inferenza del modello addestrato su 5 episodi di test. L'agente viene eseguito in modalità deterministica (i.e. senza esplorazione) per verificare la stabilità della traiettoria appresa e la capacità di generalizzazione. Data Logging: raccoglie la telemetria (coordinate X/Y, velocità) per generare i seguenti grafici:
 - Grafico traiettorie: `trajectory_plot.png`
 - Grafico spazio delle fasi: `phase_portrait.png`
 
-Si nota che mediante Intel Core i7-14700 il training ha impiegato circa 17-18 minuti.
+Si nota che mediante Intel Core i7-14700 il training ha impiegato circa 20 minuti.
 
 ### Monitoraggio con TensorBoard
 
@@ -69,7 +69,7 @@ Aprire il browser presso `http://localhost:6006` per visualizzare l'andamento de
 
 ### Visualizzazione
 
-Dopo l'addestramento, è possibile visualizzare l'agente (la policy) in azione:
+Dopo l'addestramento, è possibile visualizzare l'agente in azione:
 
 **Locale:**
 ```bash
@@ -92,11 +92,13 @@ python visualize_lander.py
 
 ## Architettura della rete
 
-- Tipo: Multi-Layer Perceptron (MLP)
+- Tipo: Multi-Layer Perceptron (MLP) default Stable-Baselines3
 - Strati nascosti: [64, 64] (default Stable-Baselines3)
 - Funzione di attivazione: tanh
 - Spazio delle osservazioni: 8 dimensioni
 - Spazio delle azioni: 2 dimensioni (continuo)
+- Input: vettore di stato 8-D
+- Output: un vettore che rappresenta la media della distribuzione Gaussiana per le azioni, e uno scalare V (s) ∈ R che stima il valore dello stato corrente (il ritorno atteso, ovvero la somma scontata dei reward futuri)
 
 Si nota che questa configurazione è una baseline: MLP [64,64] con Tanh. Sono possibili miglioramenti significativi mediante hyperparameter tuning (e.g., learning rate, ent_coef, n_steps, batch_size, normalizzazione delle osservazioni etc.) e tramite riprogettazione della policy (e.g., ReLU/Swish, reti più profonde o ampie, separazione policy/value etc.).
 
@@ -163,4 +165,4 @@ Distribuito sotto licenza MIT. Vedere il file `LICENSE` per ulteriori dettagli.
 
 ## Contatti
 
-Per segnalazioni o domande aprire una issue su GitHub.
+Per segnalazioni o domande aprire una issue su GitHub o contattare via mail.
