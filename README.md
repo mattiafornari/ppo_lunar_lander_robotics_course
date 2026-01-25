@@ -50,6 +50,9 @@ python train_lander.py
 
 L'addestramento dura massimo 20-25 minuti su CPU moderna e genera:
 - Modello addestrato: `ppo_lunar_lander.zip`
+
+Lo script prevede inoltre una breve fase di testing e valutazione (Evaluation). 
+In particolare, esegue l'inferenza del modello addestrato su 5 episodi di test. L'agente viene eseguito in modalità deterministica (i.e. senza esplorazione) per verificare la stabilità della traiettoria appresa e la capacità di generalizzazione. Data Logging: raccoglie la telemetria (coordinate X/Y, velocità) per generare i seguenti grafici:
 - Grafico traiettorie: `trajectory_plot.png`
 - Grafico spazio delle fasi: `phase_portrait.png`
 
@@ -61,7 +64,7 @@ Si nota che mediante Intel Core i7-14700 il training ha impiegato circa 17-18 mi
 ```bash
 tensorboard --logdir tensorboard_logs/
 ```
-Aprire browser presso `http://localhost:6006` per visualizzare l'andamento del training.
+Aprire il browser presso `http://localhost:6006` per visualizzare l'andamento del training.
 
 ### Visualizzazione
 
