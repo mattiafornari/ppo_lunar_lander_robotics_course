@@ -16,7 +16,7 @@ except:
 # 3. Loop di visualizzazione - Inferenza
 episodes = 5  # cambiare per visualiuzzare più atterraggi
 for ep in range(episodes):
-    obs, _ = env.reset(seed=42) # imposto seed=42 per debugging e riproducibilità
+    obs, _ = env.reset() # imposto seed=42 o altro numero per debugging e riproducibilità
     done = False
     truncated = False
     print(f"Inizio episodio {ep + 1}...")
