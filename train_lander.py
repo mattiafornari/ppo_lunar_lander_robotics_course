@@ -30,7 +30,7 @@ model.learn(total_timesteps=2000000)
 print("Training completato.")
 model.save("ppo_lunar_lander")
 
-# 4. Validazione e Grafici
+# 4. Validazione e Grafici - "testing"
 eval_env = gym.make(env_name, render_mode=None)
 
 traj_x = []
@@ -38,7 +38,7 @@ traj_y = []
 traj_vy = [] # Lista separata per le velocità per episodio
 
 print("Inizio Valutazione...")
-for i in range(5): # Test su 3 episodi
+for i in range(5): # Test su 5 episodi
     obs, _ = eval_env.reset()
     done = False
     truncated = False
@@ -70,7 +70,7 @@ for i, (x, y) in enumerate(zip(traj_x, traj_y)):
     # Segna il punto di atterraggio finale
     plt.scatter(x[-1], y[-1], c='red', s=20, zorder=5)
 
-plt.title("Traiettorie dell'Agente (Motion Planning Implicito)")
+plt.title("Traiettorie dell'Agente")
 plt.xlabel("Posizione X (0 = Landing Pad)")
 plt.ylabel("Posizione Y")
 plt.axhline(0, color='black', linestyle='--', linewidth=1) # Il suolo
@@ -86,7 +86,7 @@ plt.figure(figsize=(10, 6))
 for i, (y, vy) in enumerate(zip(traj_y, traj_vy)):
     plt.scatter(y, vy, s=3, alpha=0.5, label=f'Episodio {i+1}')
 
-plt.title("Spazio delle Fasi: Controllo Velocità di Discesa")
+plt.title("Spazio delle Fasi: controllo velocità di discesa")
 plt.xlabel("Altezza (Y)")
 plt.ylabel("Velocità Verticale (Vy)")
 plt.axhline(0, color='red', linestyle='--', label="Velocità Zero")
