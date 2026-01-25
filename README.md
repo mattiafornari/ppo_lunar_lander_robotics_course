@@ -99,7 +99,7 @@ python visualize_lander.py
 - Spazio delle osservazioni: 8 dimensioni
 - Spazio delle azioni: 2 dimensioni (continuo)
 - Input: vettore di stato 8-D
-- Output: un vettore che rappresenta la media della distribuzione Gaussiana per le azioni, e uno scalare V (s) ∈ R che stima il valore dello stato corrente (il ritorno atteso, ovvero la somma scontata dei reward futuri)
+- Output: Un vettore $\mu \in \mathbb{R}^2$ che rappresenta le medie della distribuzione Gaussiana multivariata (da cui vengono campionate le azioni) per i due comandi di controllo continui (spinta motore principale, spinta motori laterali). Uno scalare $V(s) \in \mathbb{R}$ che stima il valore dello stato corrente, ovvero il ritorno atteso (somma scontata dei reward futuri), utilizzato per calcolare il vantaggio (Advantage) durante il training.
 
 Si nota che questa configurazione è una baseline: MLP [64,64] con Tanh. Sono possibili miglioramenti significativi mediante hyperparameter tuning (e.g., learning rate, ent_coef, n_steps, batch_size, normalizzazione delle osservazioni etc.) e tramite riprogettazione della policy (e.g., ReLU/Swish, reti più profonde o ampie, separazione policy/value etc.).
 
