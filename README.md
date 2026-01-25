@@ -33,6 +33,7 @@ ppo_lunar_lander_robotics_course/
 git clone https://github.com/mattiafornari/ppo_lunar_lander_robotics_course.git
 cd ppo_lunar_lander_robotics_course
 
+sudo apt update && sudo apt install -y python3-pip python3-venv swig
 python3 -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
