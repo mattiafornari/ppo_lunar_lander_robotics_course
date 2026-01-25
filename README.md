@@ -50,7 +50,7 @@ pip install -r requirements.txt
 python train_lander.py
 ```
 
-L'addestramento dura massimo 30 minuti (variabile) su CPU moderna e genera:
+L'addestramento dura massimo 20/30 minuti (variabile) su CPU moderna e genera:
 - File `ppo_lunar_lander.zip` contenente `policy.optmizer.pth`, `policy.optmizer.pth`, `pytorch\_variables.pth` e altri secondo Stable-Baselines3.
 
 Lo script prevede inoltre una breve fase di testing e valutazione (Evaluation). 
@@ -60,7 +60,7 @@ In particolare, esegue l'inferenza del modello addestrato su 5 episodi di test. 
 
 Si nota che mediante Intel Core i7-14700 il training ha impiegato circa 20 minuti.
 
-### Monitoraggio con TensorBoard
+### Monitoraggio con TensorBoard [OPZIONALE]
 
 **Locale:**
 ```bash
@@ -158,7 +158,7 @@ Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti d
 ## Autori
 
 - **Mattia Fornari** - [@mattiafornari](https://github.com/mattiafornari)
-- **Luca Pugnetti** - [@username](https://github.com/username)
+- **Luca Pugnetti** - [@username](https://github.com/luca-pugnetti)
 
 ## Licenza
 
