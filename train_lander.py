@@ -3,7 +3,7 @@ from stable_baselines3 import PPO
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 1. Configurazione Ambiente (MDP)
+# 1. Configurazione Ambiente
 env_name = "LunarLanderContinuous-v3"
 env = gym.make(env_name, render_mode=None)
 
@@ -61,7 +61,7 @@ for i in range(5): # Test su 5 episodi
 env.close()
 eval_env.close()
 
-# --- PLOTTING ---
+# --- Grafici ---
 
 # Grafico 1: Traiettoria Spaziale
 plt.figure(figsize=(10, 6))
@@ -73,15 +73,15 @@ for i, (x, y) in enumerate(zip(traj_x, traj_y)):
 plt.title("Traiettorie dell'Agente")
 plt.xlabel("Posizione X (0 = Landing Pad)")
 plt.ylabel("Posizione Y")
-plt.axhline(0, color='black', linestyle='--', linewidth=1) # Il suolo
-plt.axvline(-0.2, color='gray', linestyle=':', alpha=0.5) # Limiti pad
+plt.axhline(0, color='black', linestyle='--', linewidth=1) # suolo
+plt.axvline(-0.2, color='gray', linestyle=':', alpha=0.5) # Limiti del pad
 plt.axvline(0.2, color='gray', linestyle=':', alpha=0.5)
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.savefig("trajectory_plot.png")
 print("Grafico traiettoria salvato.")
 
-# Grafico 2: Spazio delle Fasi (Altezza vs Velocità Verticale)
+# Grafico 2: Spazio delle Fasi (altezza vs velocità verticale)
 plt.figure(figsize=(10, 6))
 for i, (y, vy) in enumerate(zip(traj_y, traj_vy)):
     plt.scatter(y, vy, s=3, alpha=0.5, label=f'Episodio {i+1}')
@@ -90,7 +90,7 @@ plt.title("Spazio delle Fasi: controllo velocità di discesa")
 plt.xlabel("Altezza (Y)")
 plt.ylabel("Velocità Verticale (Vy)")
 plt.axhline(0, color='red', linestyle='--', label="Velocità Zero")
-plt.gca().invert_xaxis() # Opzionale: per vedere la discesa da destra a sinistra
+plt.gca().invert_xaxis() # per vedere la discesa da destra a sinistra - opzionale
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.savefig("phase_portrait.png")
