@@ -1,6 +1,5 @@
 gymnasium[box2d]==1.2.3
 stable-baselines3==2.7.1
-shimmy>=1.0.0
 matplotlib>=3.10.8
 numpy>=2.4.1
 tensorboard>=2.20.0
