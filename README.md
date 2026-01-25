@@ -50,7 +50,7 @@ pip install -r requirements.txt
 python train_lander.py
 ```
 
-L'addestramento dura massimo 30 minuti (anche di meno) su CPU moderna e genera:
+L'addestramento dura massimo 30 minuti (variabile) su CPU moderna e genera:
 - File `ppo_lunar_lander.zip` contenente `policy.optmizer.pth`, `policy.optmizer.pth`, `pytorch\_variables.pth` e altri secondo Stable-Baselines3.
 
 Lo script prevede inoltre una breve fase di testing e valutazione (Evaluation). 
