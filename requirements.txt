@@ -1,6 +1,6 @@
-gymnasium[box2d]==0.29.1
-stable-baselines3==2.2.1
+gymnasium[box2d]==1.2.3
+stable-baselines3==2.7.1
 shimmy>=1.0.0
-matplotlib>=3.7.0
-numpy>=1.24.0
-tensorboard>=2.14.0
+matplotlib>=3.10.8
+numpy>=2.4.1
+tensorboard>=2.20.0
