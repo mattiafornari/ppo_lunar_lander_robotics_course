@@ -92,7 +92,7 @@ python visualize_lander.py
 
 - Tipo: Multi-Layer Perceptron (MLP)
 - Strati nascosti: [64, 64] (default Stable-Baselines3)
-- Funzione di attivazione: Tanh
+- Funzione di attivazione: tanh
 - Spazio delle osservazioni: 8 dimensioni
 - Spazio delle azioni: 2 dimensioni (continuo)
 
