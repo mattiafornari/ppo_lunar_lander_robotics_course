@@ -158,7 +158,7 @@ Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti d
 ## Autori
 
 - **Mattia Fornari** - [@mattiafornari](https://github.com/mattiafornari)
-- **Luca Pugnetti** - [@username](https://github.com/luca-pugnetti)
+- **Luca Pugnetti** - [@luca-pugnetti](https://github.com/luca-pugnetti)
 
 ## Licenza
 
