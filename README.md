@@ -151,7 +151,7 @@ Attendere qualche minuto dall'avvio del training. I primi dati vengono scritti d
 
 ## Riferimenti
 
-- Paper PPO: [Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347)
+- PPO: [Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347)
 - Stable-Baselines3: [Documentazione](https://stable-baselines3.readthedocs.io/)
 - Gymnasium: [LunarLander-v3](https://gymnasium.farama.org/environments/box2d/lunar_lander/)
 
