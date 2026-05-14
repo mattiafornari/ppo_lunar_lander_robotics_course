@@ -23,7 +23,7 @@ ppo_lunar_lander_robotics_course/
 - Sistema operativo:
   - Linux (consigliato)
   - Windows con WSL (Windows Subsystem for Linux)
-- Python 3.10 o superiore
+- Python 3.10 o versione superiore
 - pip 
 
 ## Installazione
