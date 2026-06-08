@@ -163,7 +163,7 @@ Wait a few minutes after starting the training. The first data is written after 
 - **Mattia Fornari** - [@mattiafornari](https://github.com/mattiafornari)
 - **Luca Pugnetti** - [@luca-pugnetti](https://github.com/luca-pugnetti)
 
-## Licenza
+## License
 
 Distributed under the MIT License. See the `LICENSE` file for more details.
 
